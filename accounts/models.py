@@ -27,7 +27,7 @@ class User(AbstractBaseUser):
 
 
     USERNAME_FIELDS = 'email' 
-    REQUIRED_FIELDS = [] # обезательные поля при создание модели
+    REQUIRED_FIELDS = [] # обезательные поля при создание модели!
 
     def has_perm(self, perm, obj=None):
         return True 

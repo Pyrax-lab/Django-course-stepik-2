@@ -12,11 +12,11 @@ from django.db.models import Q
 # Используйте select_related для один к многим и один к одному связей, чтобы объединить таблицы через JOIN.
 # Используйте prefetch_related для многие ко многим и обратных связей, чтобы выполнить несколько запросов и объединить результаты в памяти.
 #Many to Many (Многие-ко-многим)
-class Compensation(models.Model):
-    name = models.CharField(max_length=255)
+# class Compensation(models.Model):
+#     name = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 #One to One  (один-к-одному) Данный тип связи создаёт еще одну таблицу а родителский класс создает поле где указывается id на поле дочернего класса
 # обращение 
@@ -43,13 +43,15 @@ class Department(models.Model):# Дочерний                               
 #Обращение employee = Employee.objects.create(first_name="Floppy", last_name="Disk")                                                                                                    |
 class Employee(models.Model):# Родительский                                                                                                                                             |
     first_name = models.CharField(max_length = 150)#                                                                                                                                    |
-    last_name = models.CharField(max_length=150)#                                                                                                                                       |
-    contact = models.OneToOneField(Contact, on_delete=models.CASCADE, null=True)#                 переопределение |-----------------------------------------------------------------------
+    last_name = models.CharField(max_length=150)#       
+    about = models.CharField(max_length=20000)
+    age = models.PositiveIntegerField(null = True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    contact = models.OneToOneField(Contact, on_delete=models.CASCADE, null=True , blank=True)#                 переопределение |-----------------------------------------------------------------------
     department = models.ForeignKey(Department, on_delete=models.CASCADE, default=None, null=True, related_name="employ_boy") # Нужен специально для того чтобы переопределить название employee_set где employee это наша таблица в нижен регистре
-    compensation = models.ManyToManyField(Compensation)
+    #compensation = models.ManyToManyField(Compensation)
     class Meta:
         db_table = "employe"
     
 
-
-Employee.objects.filted(id = 1).update(age = F(age) + 10)
+#

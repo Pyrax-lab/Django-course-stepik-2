@@ -1,6 +1,6 @@
 
 Что узнал нового из этого курса
 
-
-1. Feaker 
-pip isntall Faker
+1. ## Faker
+  ### Установка **pip install Faker**
+  ### Подключение 

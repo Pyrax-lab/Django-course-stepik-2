@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_extensions',
 
     'hr',
+    'unittests',
 ]
 
 INTERNAL_IPS = [

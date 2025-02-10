@@ -1,6 +1,6 @@
 from django.db import models
 from django.db.models import Q
-from django.contrib.postgres.indexes import I
+from django.contrib.postgres.indexes import HashIndex
 # Create your models here.
 
 # select_related() - нужно использовать когда мы будет получать всех сотрудников вместе с отношениями других таблиц он делает 1 запрос и получает данные со всех таблиц привязанные к родительской (за исключением отношений многие-ко-многим).
@@ -43,7 +43,7 @@ class Department(models.Model):# Дочерний                               
 #                                                                                                                                                                                       |
 #Обращение employee = Employee.objects.create(first_name="Floppy", last_name="Disk")                                                                                                    |
 class Employee(models.Model):# Родительский                                                                                                                                             |
-    first_name = models.CharField(max_length = 150, db_index=True)#                                                                                                                                    |
+    first_name = models.CharField(max_length = 150) #, db_index=True)# стандартное B-tree дерево                                                                                                                                     |
     last_name = models.CharField(max_length=150)#       
     about = models.CharField(max_length=20000)
     age = models.PositiveIntegerField(null = True, blank=True)
@@ -53,6 +53,8 @@ class Employee(models.Model):# Родительский                         
     #compensation = models.ManyToManyField(Compensation)
     class Meta:
         db_table = "employe"
+        indexes = (HashIndex(fields=('first_name', ),
+                             name = "hr_%(class)s_first_name_index",),)
 
 
 #

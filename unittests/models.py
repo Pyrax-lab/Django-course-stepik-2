@@ -8,7 +8,7 @@ class Catalog(models.Model):
     title        = models.CharField(max_length=150)
     ISBN         = models.CharField(max_length=150)
     author       = models.CharField(max_length=200)
-    price        = models.SmallIntegerField(default=0)
+    price        = models.SmallIntegerField()
     availability = models.CharField(max_length=300)
 
     def __str__(self):

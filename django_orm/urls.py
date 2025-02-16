@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 import debug_toolbar
+from permission import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('hr.urls')),
-    path('__debu__/', include(debug_toolbar.urls))
+    path("add", views.add_post, name="add_post"),
+    path("accounts/", include('django.contrib.auth.urls')),
+    path('__debug__/', include(debug_toolbar.urls))
 ]

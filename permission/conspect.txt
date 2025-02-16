@@ -1,0 +1,70 @@
+В нашем случае для модели Post разрешения будут выглядеть следующим образом:
+
+permission.add_post, где permission - это имя приложения(app), add - это действие(action), а post - это название модели(modelname).
+permission.change_post, где permission - это имя приложения(app), change - это действие(action), а post - это название модели(modelname).
+permission.delete_post, где permission - это имя приложения(app), delete - это действие(action), а post - это название модели(modelname).
+permission.view_post, где permission - это имя приложения(app), view - это действие(action), а post - это название модели(modelname).
+
+В админке Django, если мы зайдем под правами суперпользователя , то мы можем назначать эти права определенным пользователям. Но сначала откроем Shell и попробуем поработать в нём. Выполним:
+
+python manage.py shell
+
+Первым делом импортируем нужные модули:
+
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User, Permission
+from django.contrib.contenttypes.models import ContentType
+
+from permission.models import Post
+У каждой модели есть атрибут <name_model>_permissions. Выполним следующие команды, которые нам покажут все разрешения для модели Post.
+
+content_type = ContentType.objects.get_for_model(Post)
+post_permission = Permission.objects.filter(content_type=content_type)
+print([perm.codename for perm in post_permission])
+ 
+И получим результат, аналогичный как и в нашей базе данных.
+
+['add_post', 'change_post', 'delete_post', 'view_post']
+
+Давайте теперь создадим нового пользователя, для этого в консоли выполним следующий код:
+
+user = User.objects.create_user(username="Василий", password="test", email="test@user.com")
+ 
+Теперь давайте проверять права доступа у данного пользователя:
+
+>>> print(user.has_perm("permission.view_post"))
+False
+
+Попробуем установить права этому пользователю:
+
+>>> for perm in post_permission:
+...     user.user_permissions.add(perm)
+... 
+>>> print(user.has_perm("permission.view_post"))
+False
+Почему мы получили False? Это происходит потому, что разрешения Django не принимаются до тех пор, пока вы не создадим новый экземпляр пользователя.
+
+
+Проверим разрешения еще раз, заново извлекая пользователя.
+
+>>> user = get_user_model().objects.get(email="test@user.com")
+>>> print(user.has_perm("permission.view_post"))
+True
+
+Давайте теперь создадим администратора и проверим права у него:
+
+from django.contrib.auth.models import User
+
+superuser = User.objects.create_superuser(
+    username="admin", password="123456", email="admin@test.com"
+)
+
+Проверим разрешения на просмотр постов: 
+
+>>> print(superuser.has_perm("permission.view_post"))
+True
+
+Мы можем также проверить разрешения на не существующие права доступа:
+
+>>> print(superuser.has_perm("test.add_bar"))
+True

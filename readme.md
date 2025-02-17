@@ -7,6 +7,14 @@
   ### Использование from faker import Faker, faker=Faker(), faker.first_name() - создаёт имя 
 
 
+  ## 2. Django-guardian - создаёт кучу рандочной информации будь то имя возраст email 
+  ### Установка **pip install django-guardian**
+  ### Подключение - **INSTALLED_APPS['guardian',]** 
+   **AUTHENTICATION_BACKENDS = (**
+    **'django.contrib.auth.backends.ModelBackend', # Этот бэкенд Django использует по умолчанию**
+    **'guardian.backends.ObjectPermissionBackend', # А это  бэкенд django_guardian)**
+  ### Использование from faker import Faker, faker=Faker(), faker.first_name() - создаёт имя 
+
 # Новые Темы 
 
   ## Index в базе данных 

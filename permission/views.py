@@ -5,6 +5,7 @@ from django.http import HttpResponseForbidden
 
 def add_post(request):
     if request.user.has_perm("permission:add_post"): # Вот так легко можемь проверять имеет ли user разрешения ан добавления поста
+        print(request.user.get_all_permissions())
         return render(request, "add_post.html")
     else:# если у пользовтеля нет доступа к добавлению постов тогда ошибка разрешения
         return HttpResponseForbidden(f"Доступ запрещен {request.user}")

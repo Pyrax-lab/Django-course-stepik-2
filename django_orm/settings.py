@@ -40,10 +40,17 @@ INSTALLED_APPS = [
 
     'debug_toolbar',
     'django_extensions',
+    'guardian',
 
     'hr',
     'unittests',
     'permission',]
+
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # Этот бэкенд Django использует по умолчанию
+    'guardian.backends.ObjectPermissionBackend', # А это  бэкенд django_guardian
+)
 
 INTERNAL_IPS = [
     '127.0.0.1',

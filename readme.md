@@ -7,13 +7,15 @@
   ### Использование from faker import Faker, faker=Faker(), faker.first_name() - создаёт имя 
 
 
-  ## 2. Django-guardian - создаёт кучу рандочной информации будь то имя возраст email 
+  ## 2. Django-guardian - это библиотека, которая позволяет назначать права доступа (permissions) на уровне отдельных объектов (Object-level permissions). С её помощью можно задавать разрешения не только для всей модели, но и для конкретных экземпляров (объектов) этой модели.
   ### Установка **pip install django-guardian**
   ### Подключение - **INSTALLED_APPS['guardian',]** 
    **AUTHENTICATION_BACKENDS = (**
     **'django.contrib.auth.backends.ModelBackend', # Этот бэкенд Django использует по умолчанию**
     **'guardian.backends.ObjectPermissionBackend', # А это  бэкенд django_guardian)**
-  ### Использование from faker import Faker, faker=Faker(), faker.first_name() - создаёт имя 
+  ### Использование  **from guardian.admin import GuardedModelAdmin** регистрируем новую модель в админке **class PostAdmin(GuardedModelAdmin): list_display = ('title', )**
+  **admin.site.register(Post, PostAdmin)** 
+  и теперь в админке можешь для каждого поста добавлять пользователей которые будут имень выставленные разрешения
 
 # Новые Темы 
 

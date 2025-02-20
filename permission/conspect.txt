@@ -68,3 +68,32 @@ True
 
 >>> print(superuser.has_perm("test.add_bar"))
 True
+
+
+
+##Разрешения на уровне груп 
+Создаётся група куда можно засовывать юзерво это упрощает изменение разрешений для каждого пользователя. Когда мы засовывваем юзера в гурпу он принимает все те разрешения свойственные ей 
+
+from django.contrib.auth.models import User, Group, Permission 
+from django.contrib.contenttypes.models import ContentType 
+from permission.post import Post 
+
+
+
+author_group = Group.objects.get_or_create(name="Author") #получаем или создаём групу автор
+publisher_group = Group.objects.get_or_create(name="Publisher")
+editor_group = Group.objects.get_or_create(name="Editor") 
+
+post_content_type = ContentType.objects.get_for_model(Post) получает все данные о модели пост
+psot_permission = Permission.objects.filter(content_type=post_content_type) фильтрует все рарешение из permisions их там очень много и берет только те которые отностя к посту тоесть add change delete view
+
+for perm in post_permission: # Данный цикл проход по всем разрешениям в модели пост и для каждой определленной групы добовляет определенные рарешенеи такие как удаление например толькр publisher сможет удалять запись остальыне не сомгут 
+    if perm.codename == "delete_post":
+        publisher_group.permissions.add(perm)
+    elif perm.codename == "change_post":
+        editor_group.permissions.add(perm)
+        publisher_group.permissions.add(perm)
+    else:
+        author_group.permissions.add(perm)
+        editor_group.permissions.add(perm)
+        publisher_group.permissions.add(perm)

@@ -44,7 +44,8 @@ INSTALLED_APPS = [
 
     'hr',
     'unittests',
-    'permission',]
+    'permission',
+    'htmx',]
 
 
 AUTHENTICATION_BACKENDS = (
@@ -73,7 +74,7 @@ ROOT_URLCONF = 'django_orm.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

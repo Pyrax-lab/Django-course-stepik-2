@@ -1,0 +1,29 @@
+<form>
+    <div>
+        {% comment %} <div>
+            {{ form.title }}
+        </div>
+
+        <div>
+            {{ form.author }}
+        </div>
+
+        <div>
+            {{ form.price }}
+        </div> {% endcomment %}
+
+        {{form}}
+
+        <div>
+            <!-- Кнопка "Add book" -->
+                <!-- Кнопка "Add book" -->
+                <button type="submit"
+                class="disbtn"
+                hx-post="{% url 'create_book' %}"
+                hx-target="#book-list"
+                hx-swap="beforeend" >
+            Add book
+        </button>
+        </div>
+    </div>
+</form>

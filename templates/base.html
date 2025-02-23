@@ -5,11 +5,12 @@
     <title>{% block title %}Books{% endblock title %}</title>
 </head>
 
-<body>
+<body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 
 <div>
     <div>
         <div>
+            {% include "partial_create_book_form.html" %}
             <!-- Таблица книг -->
 
             <table>
@@ -67,16 +68,25 @@
                 {% include "partial_book_list.html" %}
                 </tbody>
 
-                
-                {% for book in book_list %}
-                    {% include "partial_book_detail.html" %}
-                {% endfor %}
-<tr>
-
             </table>
         </div>
     </div>
 </div>
+<script src="https://unpkg.com/htmx.org@1.9.4"></script>
 
+    <script>
+        function cngElementsAtr(cls, atr, val){
+            var elems = document.getElementsByClassName(cls);
+            for(var i = 0; i < elems.length; i++) {
+                elems[i][atr] = val;
+            }
+        }
+        document.body.addEventListener('htmx:afterRequest', (event) => {
+            path_str = event.detail.pathInfo.requestPath;
+            if(path_str.includes('create_book')){
+                cngElementsAtr('clrtxt', 'value', '');
+            }
+        });
+    </script>
 </body>
 </html>

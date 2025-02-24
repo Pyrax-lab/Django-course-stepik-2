@@ -60,11 +60,16 @@ INTERNAL_IPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+    'django.middleware.locale.LocaleMiddleware',  # < - Интернационализация перед CommonMiddleware
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    
 
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
@@ -126,8 +131,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
+from django.utils.translation import gettext_lazy as _
+LANGUAGE_CODE = 'en'
+LANGUAGES = [_('en', 'English'),
+             _('ru', 'Russian')]
+LOCALE_PATHS = [BASE_DIR / 'locale'] # задаёт каталоги где джанго должен искать файлы перевода
 
 TIME_ZONE = 'UTC'
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-24 19:32+0200\n"
+"POT-Creation-Date: 2025-02-26 16:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,25 +21,47 @@ msgstr ""
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: .\django_orm\settings.py:136
-msgid "en"
-msgstr ""
-
-#: .\django_orm\settings.py:137
-msgid "ru"
+msgid "English"
 msgstr "Английский"
 
-#: .\htmx\models.py:7
+#: .\django_orm\settings.py:137
+msgid "Russian"
+msgstr "Руский"
+
+#: .\htmx\forms.py:6 .\templates\base.html:34
 msgid "Title"
-msgstr ""
+msgstr "Титуль"
 
-#: .\htmx\models.py:8
+#: .\htmx\forms.py:7 .\templates\base.html:41
 msgid "Author"
-msgstr ""
+msgstr "Автор"
 
-#: .\htmx\models.py:9
+#: .\htmx\forms.py:8 .\templates\base.html:48
 msgid "Price"
-msgstr ""
+msgstr "Цена"
 
-#: .\htmx\models.py:10
+#: .\htmx\forms.py:9
 msgid "Read"
-msgstr ""
+msgstr "Прочитанно"
+
+#: .\templates\base.html:13
+msgid "Hello nigers"
+msgstr "Привет черные"
+
+#: .\templates\base.html:27
+msgid "Num"
+msgstr "Количество"
+
+#: .\templates\base.html:55
+msgid "Status"
+msgstr "Статус"
+
+#: .\templates\base.html:62
+msgid "Actions"
+msgstr "Действие"
+
+#~ msgid "en"
+#~ msgstr "Английски"
+
+#~ msgid "ru"
+#~ msgstr "Русский"

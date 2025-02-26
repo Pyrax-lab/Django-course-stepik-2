@@ -25,5 +25,6 @@ urlpatterns = [
     path('', include('htmx.urls')),
     path("add", views.add_post, name="add_post"),
     path("accounts/", include('django.contrib.auth.urls')),
-    path('__debug__/', include(debug_toolbar.urls))
+    path('__debug__/', include(debug_toolbar.urls)), #debugtoolbar
+    path("rosetta/", include('rosetta.urls')) # rosetta
 ]

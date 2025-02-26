@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-24 19:32+0200\n"
+"POT-Creation-Date: 2025-02-26 16:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,25 +19,47 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\django_orm\settings.py:136
-msgid "en"
-msgstr ""
+msgid "English"
+msgstr "English"
 
 #: .\django_orm\settings.py:137
-msgid "ru"
-msgstr "Русский"
+msgid "Russian"
+msgstr "Russian"
 
-#: .\htmx\models.py:7
+#: .\htmx\forms.py:6 .\templates\base.html:34
 msgid "Title"
-msgstr ""
+msgstr "Title"
 
-#: .\htmx\models.py:8
+#: .\htmx\forms.py:7 .\templates\base.html:41
 msgid "Author"
-msgstr ""
+msgstr "Author"
 
-#: .\htmx\models.py:9
+#: .\htmx\forms.py:8 .\templates\base.html:48
 msgid "Price"
-msgstr ""
+msgstr "Price"
 
-#: .\htmx\models.py:10
+#: .\htmx\forms.py:9
 msgid "Read"
-msgstr ""
+msgstr "Read"
+
+#: .\templates\base.html:13
+msgid "Hello nigers"
+msgstr "Hello nigers"
+
+#: .\templates\base.html:27
+msgid "Num"
+msgstr "Num"
+
+#: .\templates\base.html:55
+msgid "Status"
+msgstr "Status"
+
+#: .\templates\base.html:62
+msgid "Actions"
+msgstr "Actions"
+
+#~ msgid "en"
+#~ msgstr "English"
+
+#~ msgid "ru"
+#~ msgstr "Russian"

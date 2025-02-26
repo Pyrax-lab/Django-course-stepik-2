@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'django_extensions',
     'guardian',
+    'rosetta',
 
     'hr',
     'unittests',
@@ -133,8 +134,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 from django.utils.translation import gettext_lazy as _
 LANGUAGE_CODE = 'en'
-LANGUAGES = [_('en', 'English'),
-             _('ru', 'Russian')]
+LANGUAGES = [('en', _('English')),
+             ('ru', _('Russian'))]
 LOCALE_PATHS = [BASE_DIR / 'locale'] # задаёт каталоги где джанго должен искать файлы перевода
 
 TIME_ZONE = 'UTC'

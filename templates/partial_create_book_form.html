@@ -1,3 +1,5 @@
+
+{% load i18n %}
 <form>
     <div>
         {% comment %} <div>
@@ -12,7 +14,7 @@
             {{ form.price }}
         </div> {% endcomment %}
 
-        {{form}}
+        {{form.as_p}}
 
         <div>
             <!-- Кнопка "Add book" -->

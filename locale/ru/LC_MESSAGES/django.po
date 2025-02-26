@@ -8,35 +8,34 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-26 16:54+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2025-02-26 19:21+0200\n"
+"PO-Revision-Date: 2025-02-26 19:22+0000\n"
+"Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
-"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Translated-Using: django-rosetta 0.9.9\n"
 
-#: .\django_orm\settings.py:136
+#: .\django_orm\settings.py:137
 msgid "English"
 msgstr "Английский"
 
-#: .\django_orm\settings.py:137
+#: .\django_orm\settings.py:138
 msgid "Russian"
 msgstr "Руский"
 
-#: .\htmx\forms.py:6 .\templates\base.html:34
+#: .\htmx\forms.py:6 .\templates\base.html:36
 msgid "Title"
 msgstr "Титуль"
 
-#: .\htmx\forms.py:7 .\templates\base.html:41
+#: .\htmx\forms.py:7 .\templates\base.html:43
 msgid "Author"
 msgstr "Автор"
 
-#: .\htmx\forms.py:8 .\templates\base.html:48
+#: .\htmx\forms.py:8 .\templates\base.html:50
 msgid "Price"
 msgstr "Цена"
 
@@ -44,19 +43,27 @@ msgstr "Цена"
 msgid "Read"
 msgstr "Прочитанно"
 
+#: .\htmx\urls.py:7
+msgid "create_book/"
+msgstr "создать_книгу"
+
 #: .\templates\base.html:13
 msgid "Hello nigers"
 msgstr "Привет черные"
 
-#: .\templates\base.html:27
+#: .\templates\base.html:18
+msgid "Add book"
+msgstr "Добавить книгу"
+
+#: .\templates\base.html:29
 msgid "Num"
 msgstr "Количество"
 
-#: .\templates\base.html:55
+#: .\templates\base.html:57
 msgid "Status"
 msgstr "Статус"
 
-#: .\templates\base.html:62
+#: .\templates\base.html:64
 msgid "Actions"
 msgstr "Действие"
 

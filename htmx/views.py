@@ -11,9 +11,9 @@ def book_list(request):
     form = FormBooks(auto_id=False)
     return render(request, 'base.html', {'book_list':book, 'form' : form})
 
-@require_http_methods(['POST'])
+#@require_http_methods(['POST'])
 def create_book(request):
     form = FormBooks(request.POST)
     if form.is_valid():
         book = form.save()
-    return render(request, 'partial_book_detail.html', {'book': book})
+    return render(request, 'partial_book_detail.html', {'book': book ,'form' : form})

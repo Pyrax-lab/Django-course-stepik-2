@@ -13,7 +13,8 @@
     {% trans "Hello nigers" %}
     <div>
         <div>
-            {% include "partial_create_book_form.html" %}
+            {% comment %} #{% include "partial_create_book_form.html" %} {% endcomment %}
+            <a href="{% url 'create_book' %}">{% trans 'Add book' %}</a>
             <!-- Таблица книг -->
 
             <table>

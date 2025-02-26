@@ -19,7 +19,9 @@ from django.urls import path, include
 import debug_toolbar
 from permission import views
 
-urlpatterns = [
+from django.conf.urls.i18n import i18n_patterns # Добавляем префикс к url адресу если писать ru/ будет выдана руская версия сайта если en/ то английская
+
+urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('hr', include('hr.urls')),
     path('', include('htmx.urls')),
@@ -27,4 +29,4 @@ urlpatterns = [
     path("accounts/", include('django.contrib.auth.urls')),
     path('__debug__/', include(debug_toolbar.urls)), #debugtoolbar
     path("rosetta/", include('rosetta.urls')) # rosetta
-]
+)

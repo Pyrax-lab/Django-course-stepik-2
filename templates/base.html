@@ -9,6 +9,26 @@
 
 <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 
+    {% comment %} минимальный код для переключения языков в шаблоне  {% endcomment %}
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_available_languages as LANGUAGES %}
+    
+    {% for code, name in LANGUAGES %}
+        {% if code == LANGUAGE_CODE %}
+            <u>{{ name }}</u>
+        {% else %}
+            <a href="/{{ code }}/">{{ name }}</a>
+        {% endif %}
+    {% endfor %}
+    
+
+    {% comment %} {% for language in get_language_info_list %}
+        {% if language.code == get_current_language %}
+        <p>{{language.name_local}}</p>
+        {% else %} <a href="/{{language.code}}/">{{language.name_local}}</a>
+        {% endif %}
+    {% endfor %} {% endcomment %}
+    
 <div>
     {% trans "Hello nigers" %}
     <div>

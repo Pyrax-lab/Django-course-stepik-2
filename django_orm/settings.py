@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'hr',
     'unittests',
     'permission',
-    'htmx',]
+    'htmx',
+    ]
 
 
 AUTHENTICATION_BACKENDS = (

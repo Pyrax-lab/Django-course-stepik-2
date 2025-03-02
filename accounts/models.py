@@ -41,7 +41,7 @@ class User(AbstractBaseUser):
     def has_perm(self, perm, obj=None):
         return True 
     
-    def has_module(self, app_label=None):
+    def has_module_perms(self, app_label=None):
         return True 
     
     @property

@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
+    'daphne',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -72,6 +75,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'django_chat.wsgi.application'
+
+ASGI_APPLICATION = 'django_chat.asgi.application' # Нужен для channels
 
 
 # Database

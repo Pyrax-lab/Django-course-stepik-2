@@ -31,7 +31,7 @@ class Message(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     timenow = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name = "mesage_moster")
 
     def __str__(self):
         return f"{self.author}:- {self.content} @{self.timenow}"

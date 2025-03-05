@@ -23,5 +23,23 @@
             </div>
         {% endfor %}
 
+
+            
     </ul>
+
+    <script>
+        console.log(location.hostname)
+        console.log(location.port)
+            const socket = new WebSocket("ws://127.0.0.1:8000/")
+            socket.onopen = function(event){
+                //console.log("Соединение открыто!")
+                //socket.send("Client says Welcome")
+                socket.send("Здарова сервер")
+            }
+            socket.onmessage = function(event){
+                
+                console.log(event.data) //event.data - хранит в себе данные от сервера
+            }
+    </script>
+
 {% endblock content %}

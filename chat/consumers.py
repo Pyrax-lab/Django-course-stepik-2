@@ -1,5 +1,5 @@
-
-# # consumers - это аналог view только для сокетов
+# 5 шаг добавляем консумер
+# consumers - это аналог view только для сокетов
 
 # from channels.generic.websocket import WebsocketConsumer, AsyncWebsocketConsumer
 
@@ -21,16 +21,22 @@
 #         print("Server says disconnect")
 
 
+# Простой сокет отправляющий 99 чисел клиенту
+from channels.generic.websocket import WebsocketConsumer, AsyncWebsocketConsumer
+import time, asyncio
 
-from channels.generic.websocket import WebsocketConsumer
+# class JoinAndLeave(AsyncWebsocketConsumer):
 
-class JoinAndLeave(WebsocketConsumer):
+#     async def connect(self):
+#         await self.accept()
+#         for i in range(1, 100):
+#             await self.send(f"Клиент держи число {i}")
+#             await asyncio.sleep(1)
 
-    def connect(self):
+class JoinAndLeave(AsyncWebsocketConsumer):
+
+    async def connect(self):
         
-        self.accept()
-        self.send("Привет клиент")
-
-    def receive(self, text_data = None, bytes_data = None):
-        print(text_data)
-        
+        print("!!!!!!!!!!!!")
+        print(self.scope["user"])
+        await self.accept()

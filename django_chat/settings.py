@@ -30,9 +30,9 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
-    'channels',
-    'daphne',
+INSTALLED_APPS = [ 
+    'channels', # 1 Шаг добавляем channels
+    'daphne', # 2 шаг добавляем daphne
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -76,7 +76,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_chat.wsgi.application'
 
-ASGI_APPLICATION = 'django_chat.asgi.application' # Нужен для channels
+ASGI_APPLICATION = 'django_chat.asgi.application' # 3 шаг Нужен для channels
 
 
 # Database

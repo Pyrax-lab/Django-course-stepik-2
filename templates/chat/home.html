@@ -21,25 +21,36 @@
                     </button>
                 {% endif %}
             </div>
-        {% endfor %}
+        {% endfor %} 
 
 
+        <h1 id="text_serv" style="text-align: center; margin : 1000">Hello world</h1>
             
     </ul>
 
     <script>
         console.log(location.hostname)
         console.log(location.port)
-            const socket = new WebSocket("ws://127.0.0.1:8000/")
-            socket.onopen = function(event){
+        const socket = new WebSocket("ws://127.0.0.1:8000/")
+        socket.onopen = function(event){
                 //console.log("Соединение открыто!")
-                //socket.send("Client says Welcome")
-                socket.send("Здарова сервер")
-            }
-            socket.onmessage = function(event){
+                //socket.send("Client says Welcome") здесь клиент отправляет серверу ответ клиент -> серверу в функции receive(self, text_data) text_data тут будет находится наше сообщение от клиента
+            socket.send("Здарова сервер")
+        }
+        socket.onmessage = function(event){
                 
-                console.log(event.data) //event.data - хранит в себе данные от сервера
-            }
-    </script>
+            console.log(event.data) //event.data - хранит в себе данные от сервера
+        }
+
+        function add_event_to_all_buttons(){
+            const keys = document.querySelectorAll(".group_option")
+            keys.forEach(item => {item.addEventListener('click', send_event_message)})
+        }
+
+        
+    </script> {% endcomment %}
+
+    
+
 
 {% endblock content %}

@@ -1,0 +1,43 @@
+{% extends 'chat/base.html' %}
+{% block title %} Home {% endblock title %}
+{% block content %}
+
+
+        <h1 id="text_serv" style="text-align: center; margin : 1000">Hello world</h1>
+            
+
+  
+{% comment %}    
+    <script>
+        
+//socket.send("Client says Welcome") здесь клиент отправляет серверу ответ клиент -> серверу в функции receive(self, text_data) text_data тут будет находится наше сообщение от клиента
+                
+//event.data - хранит в себе данные от сервера
+        const socket = new WebSocket("ws://127.0.0.1:8000/")
+        socket.onopen = function(event){
+            socket.send("Hello")
+        }
+        socket.onmessage = function(event){
+            const text_html = document.querySelector("#text_serv")
+            const text = document.createElement('p')
+            text.innerHTML= event.data
+            text_html.append(text)
+
+        }
+
+        // innerHTML получаем html разметку если получить обьект.innerHTML = можемь присвоить новое значение + можем добавить html css js вставить не базопасно от XSS атак
+        // textContent получаем только текст без html также обьект.textContent = присваимаем новое значение, безопасен к XSS все экранируется
+        // createElement('p') создает новый тег надо использовать append, prepand , before , after. Вызывается у первого элемента.before(newElemnt) второй элемент будет вставлятся после первого
+    </script> {% endcomment %}
+
+    <form method="POST">
+        
+    </form>
+
+    <script>
+        const socket = new WebSocket('ws://127.0.0.1:8000/')
+        socket.onopen = function(event){
+            socket.send("!")
+        }
+    </script>
+{% endblock content %}

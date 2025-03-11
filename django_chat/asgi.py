@@ -20,7 +20,7 @@ asgi_application = get_asgi_application()
 
 application = ProtocolTypeRouter({
     "http": asgi_application,# это наши стандартные url-ы 
-    "websocket": AllowedHostsOriginValidator( # Защита от атак
+    "websocket": AllowedHostsOriginValidator( # Защита от атак 6 шаг добавляем пути именно для вебсокетов
                  AuthMiddlewareStack(
                  URLRouter(chat.routing.websocket_urlpatterns)))
     #"websocket": URLRouter(chat.routing.websocket_urlpatterns) самый просто способ добавление маршрутов для вебсокетов

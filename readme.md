@@ -25,7 +25,7 @@
 
    ## 4.sorl-thumbnail - это Django-приложение, которое помогает автоматически создавать уменьшенные версии изображений (миниатюры) и кешировать их для быстрого отображения.
    ### Установка **pip install sorl-thumbnail**
-   ### Подключение - **INSTALLED_APPS['sorl.thumbnail']** в INSTALLED_APPS добаляем либу
+   ### Подключение - **INSTALLED_APPS['sorl.thumbnail']** в INSTALLED_APPS добаляем либу!
    ### Использование - допустим у нас в модели есть картика **image = models.ImageField(uploadt_to='images/')**
    **{% load thumbnail %}**#В шаблоне нужно подключить 
    **<img src="{% thumbnail product.image 200x200 crop %}" alt="Thumbnail">** оборачиваем в специальынй тег thumbnail

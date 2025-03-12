@@ -4,19 +4,19 @@
     <h1 style="margin-top: 3px;">My Django Chat Home Page</h1>
     <ul>
         {% for group in groups %}
-            <div id="{{ group.uuid }}">
+            <div id="{{ group.data}}">
                 <li><a>{{ group.name }}</a></li>
                 {% if request.user in group.members.all %}
-                    <button id="leave-{{ group.uuid }}" class="group_option" value="leave_group {{ group.uuid }}">
+                    <button id="leave-{{ group.data }}" class="group_option" value="leave_group {{ group.data }}">
                         Leave
                     </button>
                 {% else %}
-                    <button id="join-{{ group.uuid }}" class="group_option" value="join_group {{ group.uuid }}">
+                    <button id="join-{{ group.data }}" class="group_option" value="join_group {{ group.data }}">
                         Join
                     </button>
                 {% endif %}
                 {% if request.user in group.members.all %}
-                    <button id="open-{{ group.uuid }}" class="group_option" value="open_group {{ group.uuid }}">
+                    <button id="open-{{ group.data }}" class="group_option" value="open_group {{ group.data }}">
                         Open
                     </button>
                 {% endif %}
@@ -32,23 +32,73 @@
         console.log(location.hostname)
         console.log(location.port)
         const socket = new WebSocket("ws://127.0.0.1:8000/")
-        socket.onopen = function(event){
-                //console.log("Соединение открыто!")
-                //socket.send("Client says Welcome") здесь клиент отправляет серверу ответ клиент -> серверу в функции receive(self, text_data) text_data тут будет находится наше сообщение от клиента
-            socket.send("Здарова сервер")
+        
+        
+        socket.onmessage = function(event){      
+           message = JSON.parse(event.data)
+           type, data = message.type, message.data
+           console.log(`----------${data}`)
+            if (type == "leave_group"){
+                leave_group_heandler(data)
+            }
+            else{
+                join_group_heandler(data)
+            }
         }
-        socket.onmessage = function(event){
-                
-            console.log(event.data) //event.data - хранит в себе данные от сервера
+
+        function leave_group_heandler(data){
+            
+            var leave_button = document.getElementById(`leave-${data}`)
+            var open_button = document.getElementById(`open-${data}`)
+            leave_button.remove()
+            open_button.remove()
+            var button = `<button id="join-${data}" class="group_option" value="join_group ${data}">Join</button>`
+            var dev_body = document.getElementById(data)
+            dev_body.innerHTML += button
+            add_event_to_all_buttons()
+        }
+
+        function join_group_heandler(data){
+            var leave_button = document.getElementById(`join-${data}`)
+            leave_button.remove()
+            var button = `<button id="leave-${data}" class="group_option" value="leave_group ${data}">Leave</button>`
+            var open_button = `<button id="open-${data}" class="group_option" value="open_group ${data}">Open</button>`
+
+            var dev_body = document.getElementById(data)
+            dev_body.innerHTML += button
+            dev_body.innerHTML += open_button
+            add_event_to_all_buttons()
         }
 
         function add_event_to_all_buttons(){
-            const keys = document.querySelectorAll(".group_option")
-            keys.forEach(item => {item.addEventListener('click', send_event_message)})
+            const keys = document.querySelectorAll('.group_option');
+            keys.forEach(item => {
+                item.addEventListener('click', send_event_message)
+                }
+            ) 
         }
+ 
+        function send_event_message(event){ 
+            const {target} = event 
+            group = target.value.split(" ")
+            if (group[0] == "open_group"){
+                window.location.replace(`${group[1]}`)
+            }
+            else {
+                data = {
+                    'type' : group[0],
+                    'data' : group[1],
+                }
+                
+                socket.send(JSON.stringify(data))
+                
+            }   
 
+            
+        }
         
-    </script> {% endcomment %}
+        add_event_to_all_buttons()
+    </script> 
 
     
 

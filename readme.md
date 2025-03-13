@@ -30,7 +30,8 @@
    **{% load thumbnail %}**#В шаблоне нужно подключить 
    **<img src="{% thumbnail product.image 200x200 crop %}" alt="Thumbnail">** оборачиваем в специальынй тег thumbnail
 
-   ## 5. django-channels + daphne - беб сокеты + асинхроность + 
+   ## 5. django-channels + daphne - беб сокеты + асинхроность
+   ### **pip intall channles[daphne]**
 
 # Новые Темы 
 

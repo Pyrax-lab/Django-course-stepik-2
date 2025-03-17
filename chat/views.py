@@ -8,6 +8,7 @@ def home_view(request):
     '''Главная страница, на которой перечислены все группы'''
     groups = Group.objects.all() 
     user = request.user
+   
     return render(request, 'chat/home.html', context={"groups":groups, "user":user})
 
 def group_chat_view(request, uuid):

@@ -4,19 +4,21 @@
     <h1 style="margin-top: 3px;">My Django Chat Home Page</h1>
     <ul>
         {% for group in groups %}
-            <div id="{{ group.data}}">
+            <div id="{{ group.uuid}}">
                 <li><a>{{ group.name }}</a></li>
+                {% comment %} <p>{{group.members.all}}</p> Queryset всех участников{% endcomment %} 
+                <p>Список участников {{group.members.all|length}}</p>
                 {% if request.user in group.members.all %}
-                    <button id="leave-{{ group.data }}" class="group_option" value="leave_group {{ group.data }}">
+                    <button id="leave-{{ group.uuid }}" class="group_option" value="leave_group {{ group.uuid }}">
                         Leave
                     </button>
                 {% else %}
-                    <button id="join-{{ group.data }}" class="group_option" value="join_group {{ group.data }}">
+                    <button id="join-{{ group.uuid }}" class="group_option" value="join_group {{ group.uuid }}">
                         Join
                     </button>
                 {% endif %}
                 {% if request.user in group.members.all %}
-                    <button id="open-{{ group.data }}" class="group_option" value="open_group {{ group.data }}">
+                    <button id="open-{{ group.uuid }}" class="group_option" value="open_group {{ group.uuid }}">
                         Open
                     </button>
                 {% endif %}
@@ -34,10 +36,12 @@
         const socket = new WebSocket("ws://127.0.0.1:8000/")
         
         
-        socket.onmessage = function(event){      
+        socket.onmessage = function(event){  
+                
            message = JSON.parse(event.data)
-           type, data = message.type, message.data
-           console.log(`----------${data}`)
+           type = message.type
+           data = message.data
+           
             if (type == "leave_group"){
                 leave_group_heandler(data)
             }

@@ -39,10 +39,15 @@ from channels.generic.websocket import WebsocketConsumer, AsyncWebsocketConsumer
 from accounts.models import User 
 from .models import Group, Message, Event 
 
+from channels.layers import channel_layers
+from channels.db import database_sync_to_async
+
 class JoinAndLeave(WebsocketConsumer):
     
     def connect(self):
         self.user = self.scope['user']
+        self.url = self.channel_name
+        print(self.user, self.url)
         self.accept()
 
     def receive(self, text_data=None, bytes_data=None):
@@ -75,5 +80,35 @@ class JoinAndLeave(WebsocketConsumer):
             'type' : 'join_group',
             'data' : data_uuid,
         }
+        
         self.send(json.dumps(data))
+        
+
+class GroupConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        self.group_uuid = str(self.scope['url_router']['kwargs']['uuid']) 
+        self.group = await database_sync_to_async(Group.objects.get)(uuid = self.group_uuid)
+        await self.channel_layer.group_add(self.group_uuid, self.channel_name)
+
+        self.user = self.scope("user")
+        await self.accept 
+
+    async def receive(self, text_data=None, bytes_data=None): 
+        text_data = json.loads(text_data)
+        type = text_data.get("type", None)
+        message = text_data.get('message', None)
+        author = text_data.get('author', None)
+        if type == 'text_message':
+            user = await database_sync_to_async(Group.objects.get)(email = author)
+            message = await database_sync_to_async(Message.objects.create)(author = user, content = message, group = self.group)
+        await self.channel_layer.group_send(self.group_uuid, {'type': 'text_message', 'message': str(message), 'author': author})
+
+    async def text_message(self, event):
+        message = event['message']
+        message = event.get('author')
+
+        returned_data = {'type': 'text_message', 'message': message, 'group_uuid': self.group_uuid}
+        await self.send(json.dumps(returned_data))
+
+
 

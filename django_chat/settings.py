@@ -78,6 +78,12 @@ WSGI_APPLICATION = 'django_chat.wsgi.application'
 
 ASGI_APPLICATION = 'django_chat.asgi.application' # 3 шаг Нужен для channels
 
+CHANNEL_LAYERS = { # 7 шаг нужен для передачи сообщений между разными вебсокетами
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases

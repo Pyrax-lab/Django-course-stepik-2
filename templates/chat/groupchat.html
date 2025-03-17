@@ -7,18 +7,24 @@
 <input id="chat-message-submit" type="button" value="Send">
 
 <script>
-    document.querySelector('#chat-log').value = ""
-    {% for message_event in message_and_event_list%}
- 
-   document.querySelector('#chat-log').value += ( {{message_event}}  + '\n');
-{%endfor%}
+    const socket = new WebSocket("ws://127.0.0.1:8000/")
+    document.querySelector('#chat-message-input').focus();
+    document.querySelector('#chat-message-input').onkeyup() = function(event){
+        if (keyKode === 13 ){
+            document.querySelector('#chat-message-submit').click();
+        }
+    }
+
+    document.querySelector('#chat-message-submit').onclick() = function(event){
+        const msDom = document.querySelector('#chat-message-input');
+        const message = msDom.value 
+        socket.send(JSON.stringify({
+            'type' : 'text_message',
+            'author': `{{request.user}}`,
+            'message': message 
+        }))
+        msDom.value = '';
+    }
 </script>
 
 
-<h3>Group Members</h3>
-<ul id="members">
-{% for member in group_members%}
-<li id="members-{{member.username}}">{{member}}</li>
-{%endfor%}
-</ul>
-{%endblock content%}

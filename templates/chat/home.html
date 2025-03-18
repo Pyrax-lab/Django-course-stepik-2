@@ -29,7 +29,9 @@
         <h1 id="text_serv" style="text-align: center; margin : 1000">Hello world</h1>
             
     </ul>
+{% endblock content %}
 
+{% block script %}
     <script>
         console.log(location.hostname)
         console.log(location.port)
@@ -81,12 +83,12 @@
                 }
             ) 
         }
- 
+        base_url = `${window.location.hostname}:${window.location.port}/`
         function send_event_message(event){ 
             const {target} = event 
             group = target.value.split(" ")
             if (group[0] == "open_group"){
-                window.location.replace(`${group[1]}`)
+                window.location.replace(`http://${base_url}groups/${group[1]}`) // тут происходит замена url-a на другой которая обробатывает другая вьюха 
             }
             else {
                 data = {
@@ -107,4 +109,4 @@
     
 
 
-{% endblock content %}
+{% endblock script %}

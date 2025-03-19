@@ -25,43 +25,43 @@
     'guardian.backends.ObjectPermissionBackend', # А это  бэкенд django_guardian)
 
   ### Использование  
-   from guardian.admin import GuardedModelAdmin #регистрируем новую модель в админке 
-   class PostAdmin(GuardedModelAdmin): list_display = ('title', )
+
+    from guardian.admin import GuardedModelAdmin #регистрируем новую модель в админке 
+    class PostAdmin(GuardedModelAdmin): list_display = ('title', )
 
   
-   admin.site.register(Post, PostAdmin) # и теперь в админке можешь для каждого поста добавлять пользователей которые будут имень выставленные разрешения!
+    admin.site.register(Post, PostAdmin) # и теперь в админке можешь для каждого поста добавлять пользователей которые будут имень выставленные разрешения!
 
    ## 3. Rosseta - библиотека для удобного перевода текстов с графическим интрефейсом 
    ### Установка 
-   
-   pip install django-rosetta
+
+    pip install django-rosetta
 
    ### Подключение - 
-   path("rosetta/", include('rosetta.urls')) # rosetta
-    в главный urls подключаем либу
+    path("rosetta/", include('rosetta.urls')) # rosetta в главный urls подключаем либу
    ### Использование - заходим по адресу "rosetta/ и попадаем в графическую оболочку. С данной либой можно не лезть в файлы проекта locale а сразу на сайте все перенводы настроить
 
 
    ## 4.sorl-thumbnail - это Django-приложение, которое помогает автоматически создавать уменьшенные версии изображений (миниатюры) и кешировать их для быстрого отображения.
    ### Установка 
-   pip install sorl-thumbnail
+    pip install sorl-thumbnail
 
    ### Подключение - 
-   INSTALLED_APPS['sorl.thumbnail']
-    в INSTALLED_APPS добаляем либу!
+    INSTALLED_APPS['sorl.thumbnail']
+     в INSTALLED_APPS добаляем либу!
    ### Использование - допустим у нас в модели есть картика 
-   image = models.ImageField(uploadt_to='images/')
+    image = models.ImageField(uploadt_to='images/')
 
    
-   {% load thumbnail %}
-   #В шаблоне нужно подключить 
+    {% load thumbnail %}
+    #В шаблоне нужно подключить 
    
-   <img src="{% thumbnail product.image 200x200 crop %}" alt="Thumbnail">
-    оборачиваем в специальынй тег thumbnail
+    <img src="{% thumbnail product.image 200x200 crop %}" alt="Thumbnail">
+     оборачиваем в специальынй тег thumbnail
 
    ## 5. django-channels + daphne - беб сокеты + асинхроность
    ### 
-   pip intall channles[daphne]
+    pip intall channles[daphne]
 
 
 # Новые Темы 

@@ -78,12 +78,20 @@ WSGI_APPLICATION = 'django_chat.wsgi.application'
 
 ASGI_APPLICATION = 'django_chat.asgi.application' # 3 шаг Нужен для channels
 
-CHANNEL_LAYERS = { # 7 шаг нужен для передачи сообщений между разными вебсокетами
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+# 1 Такой код сохраняет все в памяти что не очень хорошо
+# CHANNEL_LAYERS = { # 7 шаг нужен для передачи сообщений между разными вебсокетами
+#     'default': {
+#         'BACKEND': 'channels.layers.InMemoryChannelLayer'
+#     }
+# }
+
+# 2 А тут мы уже сохраняем в бд Redis
+CHANNEL_LAYERS = {
+    "default": {
+        'BACKEND': "channels_redis.core.RedisChannelLayer",
+        'CONFIG': {"hosts": ['redis://127.0.0.1:6379',]},
     }
 }
-
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases

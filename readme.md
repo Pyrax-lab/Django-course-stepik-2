@@ -34,7 +34,8 @@
 
   ## 3. Channels Redis - это бэкенд для Django Сhannels который использует Redis как message broker (посредник) для передачи сообщений между процессами.
   ### Установка **pip install channels-redis**
-  ### Подключение - **CHANNEL_LAYERS = {**
+  ### Подключение -   
+    **CHANNEL_LAYERS = {**
     **"default": {**
         **'BACKEND': "channels_redis.core.RedisChannelLayer",**
         **'CONFIG': {"hosts": ['redis://127.0.0.1:6379',]},}}** тут мы подключаемся к серверу !НО перед этим сервер redis должен быть запущен как проверить в cmd пишем redis-cli ping если получаем PONG все ок если нет тогда запускаем сервер сами для жтого пишем redis-server и все! 

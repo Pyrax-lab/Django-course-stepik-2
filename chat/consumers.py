@@ -47,7 +47,6 @@ class JoinAndLeave(WebsocketConsumer):
     def connect(self):
         self.user = self.scope['user']
         self.url = self.channel_name
-        print(self.user, self.url)
         self.accept()
 
     def receive(self, text_data=None, bytes_data=None):
@@ -63,14 +62,12 @@ class JoinAndLeave(WebsocketConsumer):
             self.join_group(data_uuid)
     
     def leave_group(self, data_uuid):
-        print(data_uuid)
         group = Group.objects.get(uuid = data_uuid)
         group.remove_user_from_group(self.user)
         data = {
             'type': 'leave_group',
             'data': data_uuid,
         }
-        print("sssss")
         self.send(json.dumps(data))
 
     def join_group(self, data_uuid):
@@ -87,7 +84,6 @@ class JoinAndLeave(WebsocketConsumer):
 class GroupConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.group_uuid = str(self.scope['url_route']['kwargs']['uuid']) 
-        print(f"~~~~~~~~~~~~~~~{self.group_uuid}")
         self.group = await database_sync_to_async(Group.objects.get)(uuid = self.group_uuid)
         await self.channel_layer.group_add(self.group_uuid, self.channel_name)
 
@@ -100,7 +96,6 @@ class GroupConsumer(AsyncWebsocketConsumer):
         message = text_data.get('message', None)
         author = text_data.get('author', None)
         if type == 'text_message':
-            print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + message)
             user = await database_sync_to_async(User.objects.get)(email = author)
             message = await database_sync_to_async(Message.objects.create)(author = user, content = message, group = self.group)
         await self.channel_layer.group_send(self.group_uuid, {'type': 'text_message', 'message': str(message), 'author': author})

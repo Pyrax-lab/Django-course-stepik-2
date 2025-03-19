@@ -13,7 +13,6 @@ def home_view(request):
 
 def group_chat_view(request, uuid):
     '''Представление для группы, где все сообщения и события отправляются на интерфейс'''
-    print("qweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
     group = get_object_or_404(Group, uuid=uuid)
     if request.user not in group.members.all():
         return HttpResponseForbidden("You are not in group ")

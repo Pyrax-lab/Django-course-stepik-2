@@ -25,11 +25,11 @@
     'guardian.backends.ObjectPermissionBackend', # А это  бэкенд django_guardian)
 
   ### Использование  
-  from guardian.admin import GuardedModelAdmin #регистрируем новую модель в админке 
-  class PostAdmin(GuardedModelAdmin): list_display = ('title', )
+   from guardian.admin import GuardedModelAdmin #регистрируем новую модель в админке 
+   class PostAdmin(GuardedModelAdmin): list_display = ('title', )
 
   
-  admin.site.register(Post, PostAdmin)
+   admin.site.register(Post, PostAdmin)
 
   и теперь в админке можешь для каждого поста добавлять пользователей которые будут имень выставленные разрешения!
 

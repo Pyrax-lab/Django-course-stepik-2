@@ -2,7 +2,7 @@
 
 # Create your models here.
 
-
+import uuid
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin 
 
@@ -28,7 +28,12 @@ class User1(AbstractBaseUser): # Указаваем нашу модель вме
     last_name  = models.CharField(max_length=255, verbose_name='Фамилия')
     is_active = models. BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+
+    is_verifed = models.BooleanField('verified', default = False)
+    verfication_uuid = models.UUIDField("Unique Verification UUID", default=uuid.uuid4)
+
     objects = UserAccountManager()
+
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']

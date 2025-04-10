@@ -29,7 +29,7 @@ class User1(AbstractBaseUser): # Указаваем нашу модель вме
     is_active = models. BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
-    is_verifed = models.BooleanField('verified', default = False)
+    is_verifed = models.BooleanField('verified', default=False)
     verfication_uuid = models.UUIDField("Unique Verification UUID", default=uuid.uuid4)
 
     objects = UserAccountManager()

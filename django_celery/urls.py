@@ -17,8 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from publish.views import view_post
+from main.views import verifid
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('verifid/<uuid:uuid>', verifid, name="verifid"),
     path('<slug:slug>/', view_post, name="view_post"),
 ]

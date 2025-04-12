@@ -12,5 +12,5 @@ def send_verification(sender, instance, created, **kwargs):
     #created - Если обьект только что создан
     if created:
         if not instance.is_verifed:
-            send_verification_mail(instance.id)
+            send_verification_mail.delay(instance.id)
            

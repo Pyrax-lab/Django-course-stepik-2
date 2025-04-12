@@ -18,3 +18,6 @@ def send_verification_mail(user_id: int):
             )
     except User1.DoesNotExist:
         print('User does not exists')
+
+
+

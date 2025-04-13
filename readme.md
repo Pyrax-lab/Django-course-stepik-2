@@ -1,9 +1,10 @@
+
+### Celery
 Установить Celery И Redis 
 
     pip install Celery
     pip install redis
     pip install -U "celery[redis]"
-
 
 Потом создаем новый файл celery.py  
 
@@ -35,16 +36,43 @@ redis в этой связке нужен как брокер сообщений
         .....
 
         логика
-    
+
 и потом эту функциию можемь вызывать где хотим в джанге
 
     test.delay(...) - delay указавает на то что celery должен запустить её как асинхронную функцию 
 
+####   celery -A publish worker -P eventlet -E --loglevel=info
+  
 
-    celery -A publish worker -P eventlet -E --loglevel=info
+### Celery beat
+celery beat - выполнение задачи через определное количество времени 
 
+в файл celery.py add
 
+    app.conf.beat_schedule = {
+        'send-report-every-single-minute': {
+            'task': 'здесь регистрируем таску которая будет выполнятся каждую минуту'
+            'schedule': crontab(), 
+        },
+    }
 
+crontab() - по умолчанию выполняется каждую минуту, тут можно регулировать время crontab(minute=56) каждые 56 минут
 
+потом в еще одной консоли запускаем уже celery beat 
 
-pip install flower
+####    celery -A publish beat
+
+### Flower
+Отслеживание задачи  Flower представляет собой удобный веб-инструмент для отслеживания работы Celery.
+
+Установка: 
+
+    pip install flower
+
+потом чтоб запустить flower создаем еще + 1 консоль 
+
+####    celery -A publish flower
+
+и в локалхосте будут отабражены все таски
+
+     http://localhost:5555

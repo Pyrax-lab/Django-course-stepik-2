@@ -1,5 +1,5 @@
 
-### Celery
+## Celery
 Установить Celery И Redis 
 
     pip install Celery
@@ -44,7 +44,7 @@ redis в этой связке нужен как брокер сообщений
 ####   celery -A publish worker -P eventlet -E --loglevel=info
   
 
-### Celery beat
+## Celery beat
 celery beat - выполнение задачи через определное количество времени 
 
 в файл celery.py add
@@ -62,7 +62,7 @@ crontab() - по умолчанию выполняется каждую мину
 
 ####    celery -A publish beat
 
-### Flower
+## Flower
 Отслеживание задачи  Flower представляет собой удобный веб-инструмент для отслеживания работы Celery.
 
 Установка: 

@@ -48,7 +48,7 @@
 
    ### Подключение - 
     INSTALLED_APPS['sorl.thumbnail']
-     в INSTALLED_APPS добаляем либу!
+     
    ### Использование - допустим у нас в модели есть картика 
     image = models.ImageField(uploadt_to='images/')
 
@@ -56,8 +56,10 @@
     {% load thumbnail %}
     #В шаблоне нужно подключить 
    
-    <img src="{% thumbnail product.image 200x200 crop %}" alt="Thumbnail">
-     оборачиваем в специальынй тег thumbnail
+    {% thumbnail product.image "200x200" crop="center" as thumb %}
+        <img src="{{ thumb.url }}" alt="Thumbnail">
+    {% endthumbnail %}
+    оборачиваем в специальынй тег thumbnail
 
    ## 5. django-channels + daphne - беб сокеты + асинхроность
    ### 

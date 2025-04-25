@@ -59,7 +59,8 @@
     {% thumbnail product.image "200x200" crop="center" as thumb %}
         <img src="{{ thumb.url }}" alt="Thumbnail">
     {% endthumbnail %}
-    оборачиваем в специальынй тег thumbnail
+  
+  оборачиваем в специальынй тег thumbnail
 
    ## 5. django-channels + daphne - беб сокеты + асинхроность
    ### 
